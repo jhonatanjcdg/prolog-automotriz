@@ -12,7 +12,10 @@ export default {
     darkMode: 'class',
     content: [
         './src/**/*.{html,js,svelte,ts}',
-        join(await import.meta.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
+        // Corrección: usar .then() para manejar la promesa
+        import.meta.resolve('@skeletonlabs/skeleton').then(modulePath => 
+            join(modulePath, '../**/*.{html,js,svelte,ts}')
+        )
     ],
     theme: {
         extend: {}
