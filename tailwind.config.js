@@ -1,21 +1,14 @@
-import { join } from 'path';
-import { fileURLToPath } from 'url';
+const { join } = require('path');
 
-import forms from '@tailwindcss/forms';
-import typography from '@tailwindcss/typography';
-import { skeleton } from '@skeletonlabs/tw-plugin';
+const forms = require('@tailwindcss/forms');
+const typography = require('@tailwindcss/typography');
+const { skeleton } = require('@skeletonlabs/tw-plugin');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = join(__filename, '..');
-
-export default {
+module.exports = {
     darkMode: 'class',
     content: [
         './src/**/*.{html,js,svelte,ts}',
-        // Corrección: usar .then() para manejar la promesa
-        import.meta.resolve('@skeletonlabs/skeleton').then(modulePath => 
-            join(modulePath, '../**/*.{html,js,svelte,ts}')
-        )
+        join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
     ],
     theme: {
         extend: {}
